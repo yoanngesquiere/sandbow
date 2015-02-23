@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Callbacks basics</title>
+</head>
+<body>
+<button class="clickableButtonWithCallback" name="toto">Toto</button>
+<button class="clickableButtonWithCallback" name="tata">Tata</button>
+<button class="clickableButtonWithCallback2" name="totoro">Totoro</button>
+
+<script>
+    var click =  function clickOnButton(callback) {
+        alert('You are in method clickOnButton');
+        callback();
+    }
+
+    // clickableButtonWithCallback will alert after the click alert
+    var buttons = document.getElementsByClassName('clickableButtonWithCallback');
+    for (var i=0, max=buttons.length; i < max; i++) {
+        buttons[i].onclick = function() {
+            name = this.name;
+            click(function() {
+                alert('You clicked on button '+ name + ' to access this method');
+            })
+        };
+    }
+
+    // clickableButtonWithCallback2 will log after the click alert
+    var buttons = document.getElementsByClassName('clickableButtonWithCallback2');
+    for (var i=0, max=buttons.length; i < max; i++) {
+        buttons[i].onclick = function() {
+            name = this.name;
+            click(function() {
+                console.log('You clicked on button '+ name + ' to access this method');
+            })
+        };
+    }
+</script>
+</body>
+</html>
